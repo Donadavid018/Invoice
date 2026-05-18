@@ -26,6 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const invAdvancePaid = document.getElementById('invAdvancePaid');
     const invBalanceDue = document.getElementById('invBalanceDue');
     const invStatusBadge = document.getElementById('invStatusBadge');
+    const invDescriptionText = document.getElementById('invDescriptionText');
 
     // History Table Elements
     const historyTableBody = document.getElementById('historyTableBody');
@@ -230,6 +231,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 "Payment Date": inv.date,
                 "Billing Address": inv.address,
                 "Phone Number": inv.phone,
+                "Description": inv.description || "Services Rendered / Payment",
                 "Package Amount (Rs)": inv.amount,
                 "Discount (Rs)": inv.discount,
                 "Taxable Value (Rs)": inv.taxableValue,
@@ -265,6 +267,7 @@ document.addEventListener('DOMContentLoaded', () => {
             "Payment Date": inv.date,
             "Billing Address": inv.address,
             "Phone Number": inv.phone,
+            "Description": inv.description || "Services Rendered / Payment",
             "Package Amount (Rs)": inv.amount,
             "Discount (Rs)": inv.discount,
             "Taxable Value (Rs)": inv.taxableValue,
@@ -306,6 +309,9 @@ document.addEventListener('DOMContentLoaded', () => {
         invCustomerName.textContent = data.name;
         invCustomerAddress.textContent = data.address;
         invCustomerPhone.textContent = data.phone;
+        if (invDescriptionText) {
+            invDescriptionText.textContent = data.description || "Services Rendered / Payment";
+        }
         invAmountPaid.textContent = formatCurrency(data.amount);
         invSubtotal.textContent = formatCurrency(data.amount);
         
@@ -349,6 +355,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const dateInput = document.getElementById('paymentDate').value;
         const address = document.getElementById('billingAddress').value;
         const phone = document.getElementById('phoneNumber').value;
+        const descriptionEl = document.getElementById('invoiceDescription');
+        const description = descriptionEl ? descriptionEl.value.trim() : "";
         
         // Robust field capture (supports both old and new IDs for caching safety)
         const amountEl = document.getElementById('packageAmount') || document.getElementById('amountPaid');
@@ -384,6 +392,7 @@ document.addEventListener('DOMContentLoaded', () => {
             date: formattedDate,
             address, 
             phone, 
+            description: description || "Services Rendered / Payment",
             amount: rawAmount, 
             discount: rawDiscount, 
             taxableValue: taxableValue,
