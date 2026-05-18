@@ -65,6 +65,14 @@
                         <label for="discountCode">Discount Code</label>
                         <input type="text" id="discountCode" value="NMT-PROMO-2026" readonly class="readonly-input">
                     </div>
+
+                    <div class="input-group full-width">
+                        <label for="invoiceDescription">Description</label>
+                        <textarea id="invoiceDescription"
+                            placeholder="Enter custom invoice description... Defaults to 'Services Rendered / Payment' if empty"
+                            rows="2"
+                            style="width: 100%; padding: 0.75rem; border: 1px solid var(--border, #e2e8f0); border-radius: 0.5rem; font-family: inherit; resize: vertical;"></textarea>
+                    </div>
                 </div>
 
                 <div class="form-actions">
@@ -128,7 +136,7 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>Services Rendered / Payment</td>
+                                <td id="invDescriptionText">Services Rendered / Payment</td>
                                 <td class="text-right">Rs <span id="invAmountPaid">0.00</span></td>
                             </tr>
                         </tbody>
@@ -168,10 +176,10 @@
                 </div>
 
                 <!-- Invoice Footer -->
-                <div class="invoice-footer">
+                <!-- <div class="invoice-footer">
                     <p>Thank you for choosing NMT. We appreciate your business!</p>
 
-                </div>
+                </div> -->
             </div>
 
             <div class="preview-actions no-print hidden" id="previewActions">
